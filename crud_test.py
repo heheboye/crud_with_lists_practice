@@ -1,9 +1,11 @@
+import uuid
+
 # Storage lists.
-storage_id = [1, 2, 3]
-storage_name = ['Carlos', 'Ricardo', 'Carlos']
-storage_surname = ['Perez', 'Sanchez', 'Gutierrez']
-storage_birthdate = ['30/11/1990', '19/08/1987', '22/07/1933']
-storage_age = ['22', '39', '69']
+storage_id = []
+storage_name = []
+storage_surname = []
+storage_birthdate = []
+storage_age = []
 
 # Create entries.
 def new_entry(where, entry):
@@ -69,6 +71,7 @@ while True:
         entry_surname = input("Surname: ")
         entry_birthdate = input("Birthdate: ")
         entry_age = input("Age: ")
+        entry_id = str(uuid.uuid4())
         # Check if all the entries are valid.
         if entry_name == "" or entry_surname == "" or entry_birthdate == "" or entry_age == "":
             print("Entries can't be empty.\n")
@@ -77,7 +80,6 @@ while True:
             new_entry(storage_surname, entry_surname)
             new_entry(storage_birthdate, entry_birthdate)
             new_entry(storage_age, entry_age)
-            entry_id = int(len(storage_name))
             new_entry(storage_id, entry_id)
             print("\nEntries successfully registered.")
     elif option == 2:
@@ -97,9 +99,6 @@ while True:
     elif option == 4:
         # Type the id of the entry that you want to delete.
         search_id = input("\nSearch by id: ")
-        if search_id.isnumeric():
-            search_and_delete(int(search_id))
-        else:
-            print("Only numbers accepted.")
+        search_and_delete(search_id)
     elif option == 5:
         break
